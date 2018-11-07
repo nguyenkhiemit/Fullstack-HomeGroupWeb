@@ -1,0 +1,100 @@
+.sample {
+    margin-top: 16px;
+}
+
+.sample-img {
+    margin-top: 16px;
+    max-width: 100%;
+    height: auto;
+}
+
+.message-view {
+    margin-top: 20px;
+}
+
+.count-message {
+    line-height: 30px;
+    float: left
+}
+
+.sort-message {
+    float: right;
+    text-align: center;
+}
+
+.sort-title {
+    float: right;
+    line-height: 30px;
+    margin-right: 8px;
+}
+
+.dropdown {
+    float: right;
+}
+
+.dropdown .btn-sort {
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin: auto;
+    border: 1px solid #666666;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 0px 8px 0px 8px;
+}
+
+.sample-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ebebeb;
+    margin-top: 8px;
+    float: left;
+}
+
+.box-message .message-avatar {
+    clear: both;
+    width: 50px;
+    height: 50px;
+    float: left;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: center;
+    line-height: 70px;
+    color: #838484;
+    background-color: #ffeeba;
+}
+
+.box-message {
+    margin-top: 16px;
+    width: 100%;
+    float: left;
+}
+
+.box-message form .form-control {
+    height: 100px;
+    border-radius: 0;
+}
+
+.box-message form .checkbox {
+    float: left;
+    font-size: 14px;
+}
+
+.box-message .post-view {
+    height: 50px;
+}
+
+.btn-fb-login {
+    float: right;
+    border: 1px solid rgba(149,154,157,0.14);
+    background-color: #4c69ba;
+    height: 30px;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.list-message {
+    clear: left;
+    margin-top: 16px;
+}

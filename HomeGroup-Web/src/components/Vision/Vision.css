@@ -1,0 +1,54 @@
+#vision {
+    background: url("https://noithattico.vn/wp-content/uploads/2017/08/web1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+#vision .col-md-8 {
+    background-color: #efefef;
+}
+
+#vision .title {
+    width: 100%;
+    margin: 16px;
+    float: left;
+}
+
+.vision-line {
+    margin-left: 20px;
+}
+
+.divider {
+    display: inline;
+    width: 100px;
+    height: 2px;
+    background-color: rgba(45, 45, 45, 0.82);
+    float: left;
+}
+
+#vision .client {
+    display: inline-block;
+    margin: 16px;
+}
+
+#vision .line {
+    width: 100%;
+    height: 1px;
+}
+
+#vision .client img {
+    background-color: #1c7430;
+    margin-top: 16px;
+    padding: 0;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    float: left;
+}
+
+#vision .client .desc {
+    margin: 16px;
+    padding-left: 16px;
+    text-align: left;
+    overflow: hidden;
+    display: block;
+}

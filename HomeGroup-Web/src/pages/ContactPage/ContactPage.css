@@ -1,0 +1,83 @@
+.name-company {
+    text-align: center;
+}
+
+.google-map {
+    width: 100%;
+    height: 50vh;
+    margin-top: 16px;
+    background-color: gainsboro;
+}
+
+.contact-info {
+    margin-top: 20px;
+    background-size: cover;
+}
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #282c34;
+    border-radius: 50%;
+    margin: 30px auto;
+}
+
+.icon-box .icon-box-white {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #282c34;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.icon-box .icon-box-white .mobile {
+    color: #4E555B;
+    font-size: 50px;
+    line-height: 70px;
+}
+
+.icon-box .icon-box-white .envelop {
+    color: #4E555B;
+    font-size: 30px;
+    line-height: 70px;
+}
+
+.title-contact {
+    color: #282c34 !important;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 22px !important;
+    line-height: 25px;
+    font-style: normal;
+}
+
+.info-contact {
+    color: #282c34 !important;
+    text-align: center;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+
+.form-contact h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.form-contact .btn-send {
+    margin-bottom: 20px;
+}
+
+.name-company {
+    margin-top: 16px;
+}
+
+.fa-envelope {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}

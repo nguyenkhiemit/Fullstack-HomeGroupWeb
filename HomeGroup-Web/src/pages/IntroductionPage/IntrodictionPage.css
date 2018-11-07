@@ -1,0 +1,155 @@
+.introduction {
+    margin-top: 16px;
+}
+
+.title {
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-style: normal;
+    text-align: left;
+    color: #333333 !important;
+}
+
+.divider {
+    width: 100px;
+    height: 4px;
+    background-color: rgba(185, 187, 190, 0.47);
+}
+
+.des {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0px;
+    font-style: normal;
+    text-align: left;
+    color: #787878 !important;
+}
+
+.schedule {
+    width: 100%;
+    height: 30px;
+    background-color: #1e73be;
+    color: white;
+    vertical-align: center;
+    line-height: 30px;
+    border-radius: 4px;
+}
+
+.schedule .skill-schedule {
+    float: left;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #1b67ab;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.schedule .percent {
+    float: right;
+    padding-right: 16px;
+    font-weight: bold;
+}
+
+.commitment {
+    clear: both;
+    width: 100%;
+    height: 30px;
+    background-color: #c8bc1b;
+    color: white;
+    vertical-align: center;
+    line-height: 30px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.commitment .skill-commitment {
+    float: left;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #b8ad19;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.commitment .percent {
+    float: right;
+    padding-right: 16px;
+    font-weight: bold;
+}
+
+.satisfaction {
+    clear: both;
+    width: 100%;
+    height: 30px;
+    background-color: #7fd441;
+    color: white;
+    vertical-align: center;
+    line-height: 30px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.satisfaction .skill-satisfaction {
+    float: left;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #74c13b;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.satisfaction .percent {
+    float: right;
+    padding-right: 16px;
+    font-weight: bold;
+}
+
+.introduction .name {
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.introduction ul {
+    float: left;
+    margin-top: 30px;
+}
+
+.service-layout {
+    width: 100%;
+    background-color: #343434;
+}
+
+.introduction .service {
+    text-align: center;
+    padding: 40px 0px 40px 0px;
+}
+
+.introduction .service .service-icon {
+    width: 100%;
+}
+
+.service .quality {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff8cf;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    font-size: 22px;
+    margin: auto;
+}
+
+.introduction .service b {
+    margin-top: 16px;
+    color: #fff4d8;
+    line-height: 50px;
+}
+
+.introduction .service .content {
+    color: #fcffd6 !important;
+    text-align: center;
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal
+}

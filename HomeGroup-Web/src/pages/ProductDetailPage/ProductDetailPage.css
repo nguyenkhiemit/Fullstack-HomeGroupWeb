@@ -1,0 +1,38 @@
+
+.product-detail-header {
+    width: 100%;
+    height: 70px;
+    font-size: 20px;
+    background-color: #efefef;
+    line-height: 70px;
+    padding-left: 20px;
+    color: #666666;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.category {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    width: fit-content;
+    margin-top: 16px;
+    border-bottom: 2px solid #999999;
+}
+
+.product-detail-title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.product-detail-content {
+    margin-top: 10px;
+}
+
+.unit-item {
+    margin-top: 10px;
+}
+
+.product-detail-desc {
+    margin-top: 16px;
+}

@@ -1,0 +1,14 @@
+.item-title {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.item-category {
+    text-align: center;
+    color: #333333;
+}
