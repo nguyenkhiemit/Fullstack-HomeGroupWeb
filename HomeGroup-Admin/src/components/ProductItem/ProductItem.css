@@ -1,0 +1,32 @@
+td p {
+    line-height: 50px;
+    margin: auto;
+}
+
+img {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.state {
+    width: 60px;
+}
+
+.btn-danger {
+    color: white;
+    border: none;
+    margin-top: 16px;
+    margin-right: 6px;
+    padding: 0;
+    width: 25px;
+}
+
+.btn-danger i {
+    color: white;
+}
+
+.my-checkbox {
+   margin-top: 8px;
+}
+

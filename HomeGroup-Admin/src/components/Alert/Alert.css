@@ -1,0 +1,57 @@
+.ng-alert-success {
+    width: 300px;
+    height: 70px;
+    box-shadow: 4px 4px 4px 4px #ebebeb;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #62ac62;
+    margin: auto;
+    text-align: center;
+    line-height: 70px;
+    color: #fbfbfb;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.ng-alert-failure {
+    width: 300px;
+    height: 70px;
+    box-shadow: 5px 5px 5px 5px #ebebeb;
+    position: fixed;
+    top: 10px;
+    right: -300px;
+    background-color: #62ac62;
+    margin: auto;
+    text-align: center;
+    line-height: 70px;
+    color: #fbfbfb;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.anim-in {
+    animation: move-in 0.3s linear;
+}
+
+.anim-out {
+    animation: move-out 0.3s linear;
+}
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes move-in {
+    0%   {right: -300px; top: 10px}
+    100% {right: 10px; top: 10px}
+}
+
+@keyframes move-out {
+    0%   {right: 10px; top: 10px}
+    100% {right: -300px; top: 10px}
+}

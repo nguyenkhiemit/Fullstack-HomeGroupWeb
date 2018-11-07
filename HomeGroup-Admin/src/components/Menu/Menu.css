@@ -1,0 +1,32 @@
+.side-menu {
+    width: 100%;
+    height: 100%;
+    background-color: #282c34;
+    position: relative;
+}
+
+div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.side-menu ul {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+}
+
+.side-menu ul li {
+    width: 100%;
+    list-style: none;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid #666666;
+}
+
+.side-menu ul li a {
+    color: #9a9da0;
+    font-size: 16px;
+}
