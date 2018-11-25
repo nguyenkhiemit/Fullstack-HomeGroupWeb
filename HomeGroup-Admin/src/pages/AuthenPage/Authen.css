@@ -7,6 +7,13 @@
 }
 
 .login-btn {
+    width: 100%;
+    margin-top: 16px;
+    background-color: #62ac62;
+}
+
+.login-btn-fb {
+    width: 100%;
     margin-top: 16px;
 }
 

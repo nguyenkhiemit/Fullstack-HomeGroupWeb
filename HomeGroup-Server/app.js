@@ -12,7 +12,10 @@ var comment = require('./controllers/comment');
 var authen = require('./controllers/authen');
 var nodemon = require('nodemon');
 var mongoose = require('mongoose');
+var passport = require('./config/passport');
 var file = require('./controllers/file');
+
+// require('./config/passport')(passport);
 
 var app = express();
 app.use(function(req, res, next) { //allow cross origin requests
@@ -46,6 +49,7 @@ db.once("open", function(callback) {
     console.log("Connection succeeded.");
 });
 
+app.use(passport.initialize());
 app.use('/', index);
 app.use('/users', users);
 app.use('/product', product);

@@ -3,11 +3,12 @@ var User = require('../models/user');
 var config = require('../config/database');
 var jwt = require('jwt-simple');
 var passport = require('passport');
+
 var router = express.Router();
 
 /* POST sign up */
 router.post('/signup', function (req, res) {
-    if(!req.body.email || !req.body.password) {
+    if (!req.body.email || !req.body.password) {
         res.json({success: false, msg: 'Please pass name and password'});
     } else {
         var newUser = new User({
@@ -15,7 +16,7 @@ router.post('/signup', function (req, res) {
             password: req.body.password
         });
         newUser.save(function (err) {
-            if(err) {
+            if (err) {
                 res.json({success: false, msg: 'Username already exits'});
             } else {
                 res.json({success: true, msg: 'Successful created user!'});
@@ -29,12 +30,12 @@ router.post('/authenticate', function (req, res) {
     User.findOne({
         name: req.body.email
     }, function (err, user) {
-        if(err) throw err;
-        if(!user) {
+        if (err) throw err;
+        if (!user) {
             return res.send({success: false, msg: 'Authentication fail. User not found'});
         } else {
             user.comparePassword(req.body.password, function (err, isMatch) {
-                if(isMatch && !err) {
+                if (isMatch && !err) {
                     var token = jwt.encode(user, config.secret);
                     res.json({success: true, token: 'JWT ' + token});
                 } else {
@@ -46,15 +47,15 @@ router.post('/authenticate', function (req, res) {
 });
 
 /* GET member info */
-router.get('/memberinfo', passport.authenticate('jwt', {session: false}), function (req, res) {
+router.get('/memberinfo', passport.authenticate(['jwt', 'facebok'], {session: false}), function (req, res) {
     var token = getToken(req.headers);
-    if(token) {
+    if (token) {
         var decoded = jwt.decode(token, config.secret);
         User.findOne({
             name: decoded.name
         }, function (err, user) {
-            if(err) throw err;
-            if(!user) {
+            if (err) throw err;
+            if (!user) {
                 return res.status(403).send({success: false, msg: 'Authentication fail. User not found'});
             } else {
                 return res.json({success: true, name: user.name});
@@ -66,9 +67,9 @@ router.get('/memberinfo', passport.authenticate('jwt', {session: false}), functi
 });
 
 getToken = function (headers) {
-    if(headers && headers.authorization) {
+    if (headers && headers.authorization) {
         var parted = headers.authorization.split(' ');
-        if(parted.length === 2) {
+        if (parted.length === 2) {
             return parted[1];
         } else {
             return null;
@@ -77,5 +78,11 @@ getToken = function (headers) {
         return null;
     }
 };
+
+router.get('/fblogin', passport.authenticate('facebook', { session: false }),
+    (req, res) => {
+        res.send('AUTH WAS GOOD');
+    }
+);
 
 module.exports = router;

@@ -99,6 +99,7 @@ class Login extends Component {
                             <label className="form-check-label" For="exampleCheck1">Remember me</label>
                         </div>
                         <button type="submit" className="btn btn-primary login-btn">Login</button>
+                        <button type="submit" className="btn btn-primary login-btn-fb">Login with Facebook</button>
                     </form>
                     <p className="register-label">
                         Don't have a account? <Link to="/register" type="button">REGISTER HERE</Link>
