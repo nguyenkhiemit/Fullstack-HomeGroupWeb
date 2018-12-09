@@ -12,9 +12,15 @@
     background-color: #62ac62;
 }
 
-.login-btn-fb {
+.btn-fb-login {
     width: 100%;
-    margin-top: 16px;
+    float: right;
+    border: 1px solid rgba(149,154,157,0.14);
+    background-color: #4c69ba;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
 }
 
 .register-label {

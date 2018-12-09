@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './Authen.css'
 import {Link} from "react-router-dom";
-import {callApi} from "../../utils/apiCaller";
+import {callApi,callApi1} from "../../utils/apiCaller";
 import Notifications, {notify} from 'react-notify-toast';
 import {NotificationManager} from "react-notifications";
 import {Redirect} from "react-router-dom";
+import { FacebookProvider, LoginButton } from 'react-facebook';
 
 class Login extends Component {
 
@@ -58,6 +59,17 @@ class Login extends Component {
         });
     };
 
+    responseFacebook = (response) => {
+        console.log(response.tokenDetail.accessToken);
+        callApi('authen/auth/facebook', 'POST', {access_token: response.tokenDetail.accessToken}).then(res => {
+            console.log(res)
+        });
+    };
+
+    handleError = () => {
+
+    };
+
     render() {
         let {isLogin} = this.state;
         if(isLogin === true) {
@@ -70,7 +82,7 @@ class Login extends Component {
                 <div className="container col-md-4 form">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            <label For="exampleInputEmail1">Email address</label>
+                            <label htmlFor="exampleInputEmail1">Email address</label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -84,7 +96,7 @@ class Login extends Component {
                             </small>
                         </div>
                         <div className="form-group">
-                            <label For="exampleInputPassword1">Password</label>
+                            <label htmlFor="exampleInputPassword1">Password</label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -96,10 +108,19 @@ class Login extends Component {
                         </div>
                         <div className="form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-                            <label className="form-check-label" For="exampleCheck1">Remember me</label>
+                            <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                         </div>
                         <button type="submit" className="btn btn-primary login-btn">Login</button>
-                        <button type="submit" className="btn btn-primary login-btn-fb">Login with Facebook</button>
+                        <FacebookProvider appId="480321862375505">
+                            <LoginButton
+                                className={`btn-fb-login`}
+                                scope="email"
+                                onCompleted={this.responseFacebook}
+                                onError={this.handleError}
+                            >
+                                <span>Login via Facebook</span>
+                            </LoginButton>
+                        </FacebookProvider>
                     </form>
                     <p className="register-label">
                         Don't have a account? <Link to="/register" type="button">REGISTER HERE</Link>

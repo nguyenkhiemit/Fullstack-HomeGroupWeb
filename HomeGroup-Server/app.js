@@ -21,6 +21,7 @@ var app = express();
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001/");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
@@ -50,6 +51,7 @@ db.once("open", function(callback) {
 });
 
 app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', index);
 app.use('/users', users);
 app.use('/product', product);
@@ -75,5 +77,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

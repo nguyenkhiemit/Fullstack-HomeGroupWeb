@@ -23,4 +23,3 @@ export const deleteApi = (endpoint, params = null, headers = null) => {
         console.log(err);
     });
 };
-

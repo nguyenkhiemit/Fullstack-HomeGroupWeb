@@ -3,6 +3,7 @@ var User = require('../models/user');
 var config = require('../config/database');
 var jwt = require('jwt-simple');
 var passport = require('passport');
+var { generateToken, sendToken } = require('../utils/token.utils');
 
 var router = express.Router();
 
@@ -79,10 +80,15 @@ getToken = function (headers) {
     }
 };
 
-router.get('/fblogin', passport.authenticate('facebook', { session: false }),
-    (req, res) => {
-        res.send('AUTH WAS GOOD');
-    }
-);
+/* Login Facebook */
+router.post('/auth/facebook', passport.authenticate('facebook-token', {session: false}), function(req, res, next) {
+        if (!req.user) {
+            return res.send(401, 'User Not Authenticated');
+        }
+        req.auth = {
+            id: req.user.id
+        };
+        next();
+    }, generateToken, sendToken);
 
 module.exports = router;
