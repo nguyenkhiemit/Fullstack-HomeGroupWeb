@@ -7,6 +7,7 @@ let FacebookTokenStrategy = require('passport-facebook-token');
 let User = require('../models/user');
 let config = require('../config/database');
 
+//client must pass Authorization = 'JWT abc'
 passport.use(new JwtStrategy({
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
         secretOrKey: config.secret
