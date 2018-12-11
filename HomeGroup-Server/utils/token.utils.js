@@ -1,9 +1,10 @@
 var jwt = require('jsonwebtoken');
+var config = require('../config/database');
 
 var createToken = function(auth) {
     return jwt.sign({
             id: auth.id
-        }, 'my-secret',
+        }, config.secret,
         {
             expiresIn: 60 * 120
         });
@@ -15,7 +16,6 @@ module.exports = {
         return next();
     },
     sendToken: function(req, res) {
-        //res.setHeader('x-auth-token', req.token);
-        return res.status(200).send({'token': req.token});
+        return res.status(200).send({success: true, token: 'JWT ' + req.token});
     }
 };

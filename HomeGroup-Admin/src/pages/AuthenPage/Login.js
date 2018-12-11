@@ -37,10 +37,10 @@ class Login extends Component {
         console.log(this.state);
         let {email, password} = this.state;
         let params = {
-            email: email,
+            username: email,
             password: password
         };
-        callApi("authen/authenticate", 'POST', params).then(res => {
+        callApi("authen/login", 'POST', params).then(res => {
             console.log(res);
             if(res.data.success === true) {
                 NotificationManager.success('Success message', '', 1000, null, true);

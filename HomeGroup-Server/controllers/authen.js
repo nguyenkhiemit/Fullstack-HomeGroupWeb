@@ -1,10 +1,9 @@
 var express = require('express');
 var User = require('../models/user');
 var config = require('../config/database');
-var jwt = require('jwt-simple');
 var passport = require('passport');
 var { generateToken, sendToken } = require('../utils/token.utils');
-
+var jwt = require('jsonwebtoken');
 var router = express.Router();
 
 /* POST sign up */
@@ -13,7 +12,7 @@ router.post('/signup', function (req, res) {
         res.json({success: false, msg: 'Please pass name and password'});
     } else {
         var newUser = new User({
-            name: req.body.email,
+            email: req.body.email,
             password: req.body.password
         });
         newUser.save(function (err) {
@@ -26,65 +25,32 @@ router.post('/signup', function (req, res) {
     }
 });
 
-/* POST sign in */
-router.post('/authenticate', function (req, res) {
-    User.findOne({
-        name: req.body.email
-    }, function (err, user) {
-        if (err) throw err;
-        if (!user) {
-            return res.send({success: false, msg: 'Authentication fail. User not found'});
-        } else {
-            user.comparePassword(req.body.password, function (err, isMatch) {
-                if (isMatch && !err) {
-                    var token = jwt.encode(user, config.secret);
-                    res.json({success: true, token: 'JWT ' + token});
-                } else {
-                    return res.send({success: false, msg: 'Authentication fail. Wrong password'});
-                }
-            });
-        }
-    });
-});
-
-/* GET member info */
-router.get('/memberinfo', passport.authenticate(['jwt', 'facebok'], {session: false}), function (req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-        var decoded = jwt.decode(token, config.secret);
-        User.findOne({
-            name: decoded.name
-        }, function (err, user) {
-            if (err) throw err;
-            if (!user) {
-                return res.status(403).send({success: false, msg: 'Authentication fail. User not found'});
-            } else {
-                return res.json({success: true, name: user.name});
-            }
-        });
-    } else {
-        return res.status(403).send({success: false, msg: 'No token provider'});
+/* POST login in */
+router.post('/login', passport.authenticate('local', {session: false}), function(req, res, next) {
+    if (!req.user) {
+        return res.send({success: false, msg: req.message});
     }
-});
+    console.log('user id = ' + req.user.id);
+    req.auth = {
+        id: req.user.id
+    };
+    next();
+}, generateToken, sendToken);
 
-getToken = function (headers) {
-    if (headers && headers.authorization) {
-        var parted = headers.authorization.split(' ');
-        if (parted.length === 2) {
-            return parted[1];
-        } else {
-            return null;
-        }
-    } else {
-        return null;
+/* GET user info */
+router.get('/profile', passport.authenticate('jwt', {session: false}), function (req, res) {
+    if (!req.user) {
+        return res.send({success: false, msg: req.message});
     }
-};
+    return res.send({success: true, data: req.user});
+});
 
 /* Login Facebook */
 router.post('/auth/facebook', passport.authenticate('facebook-token', {session: false}), function(req, res, next) {
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }
+        console.log('user id = ' + req.user.id);
         req.auth = {
             id: req.user.id
         };

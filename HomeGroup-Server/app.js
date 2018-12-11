@@ -15,8 +15,6 @@ var mongoose = require('mongoose');
 var passport = require('./config/passport');
 var file = require('./controllers/file');
 
-// require('./config/passport')(passport);
-
 var app = express();
 app.use(function(req, res, next) { //allow cross origin requests
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");

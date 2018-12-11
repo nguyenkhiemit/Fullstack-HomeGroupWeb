@@ -1,44 +1,42 @@
-var passport = require('passport');
-var JwtStrategy = require('passport-jwt').Strategy;
-var ExtractJwt = require('passport-jwt').ExtractJwt;
-var FacebookTokenStrategy = require('passport-facebook-token');
+let passport = require('passport');
+let JwtStrategy = require('passport-jwt').Strategy;
+let ExtractJwt = require('passport-jwt').ExtractJwt;
 
-var User = require('../models/user');
-var config = require('../config/database');
+let LocalStrategy = require('passport-local').Strategy;
+let FacebookTokenStrategy = require('passport-facebook-token');
+let User = require('../models/user');
+let config = require('../config/database');
 
-/**
- *Configuration and Settings
- */
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-        if(err) {
-            console.error('There was an error accessing the records of' +
-                ' user with id: ' + id);
-            return console.log(err.message);
-        }
-        return done(null, user);
+passport.use(new JwtStrategy({
+        jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
+        secretOrKey: config.secret
+    }, function (jwtPayload, done) {
+        return User.findOne({_id: jwtPayload.id}, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            return done(null, user);
+        })
     })
-});
+);
 
-var opts = {};
-opts.secretOrKey = config.secret;
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-passport.use('jwt', new JwtStrategy(opts, function (jwt_payload, done) {
-    User.find({id: jwt_payload.id}, function (err, user) {
-        if(err) {
-            return done(err, false);
-        }
-        if(user) {
-            done(null, user);
-        } else {
-            done(null, false);
-        }
-    });
-}));
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({ email: username }, function(err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            user.comparePassword(password, function (err, isMatch) {
+                if (!isMatch || err) {
+                    return done(null, false, { message: 'Incorrect password.' });
+                }
+            });
+            return done(null, user);
+        });
+    }
+));
 
 passport.use(new FacebookTokenStrategy({
         clientID: "480321862375505",
@@ -50,7 +48,7 @@ passport.use(new FacebookTokenStrategy({
             'facebookProvider.id': profile.id
         }, function (err, user) {
             if (!user) {
-                var newUser = new User({
+                let newUser = new User({
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     facebookProvider: {
@@ -70,5 +68,6 @@ passport.use(new FacebookTokenStrategy({
         });
     })
 );
+
 
 module.exports = passport;
